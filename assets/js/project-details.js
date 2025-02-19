@@ -9,29 +9,29 @@ document.addEventListener('DOMContentLoaded', function() {
         index: 0,
         title: 'Crosswalk Pedestrian Detection',
         category: 'AI & ML',
-        client: 'Research Project',
-        date: 'January 2024',
-        url: 'https://github.com/raymardi27/crosswalk-detection',
+        // client: 'University Project',
+        date: 'May 2024',
+        url: 'https://github.com/raymardi27/Crosswalk-pedestrian-detection',
         description: 'A computer vision project that uses deep learning to detect pedestrians in crosswalks and alert drivers. The system processes real-time video feeds to identify potential hazards and triggers appropriate warning systems.',
-        technologies: ['Python', 'TensorFlow', 'OpenCV', 'YOLOv5']
+        technologies: ['C++','ONNX', 'Nvidia Jetson Orin', 'OpenCV', 'YOLOv5']
       },
       'chess': {
         index: 1,
         title: 'Ajax Chess',
         category: 'Web Development',
-        client: 'Personal Project',
-        date: 'December 2023',
-        url: 'https://github.com/raymardi27/ajax-chess',
+        // client: 'University Project',
+        date: 'December 2024',
+        url: 'https://github.com/raymardi27/Ajax-Chess',
         description: 'A full-stack chess application built with Django and deployed on Google Cloud Platform. Features include real-time gameplay, move validation, and game state persistence.',
-        technologies: ['Django', 'Python', 'JavaScript', 'GCP']
+        technologies: ['Django', 'Python', 'JavaScript', 'GCP', 'Docker', 'PostgreSQL', 'Redis']
       },
       'voice-robot': {
         index: 2,
         title: 'Voice Activated Object Navigation Robot',
         category: 'AI & ML',
-        client: 'University Project',
-        date: 'November 2023',
-        url: 'https://github.com/raymardi27/voice-nav-robot',
+        // client: 'University Project',
+        date: 'December 2024',
+        url: 'https://github.com/get2aadil/robotics',
         description: 'An autonomous robot system that responds to voice commands for object navigation. Integrates speech recognition, obstacle avoidance, and path planning algorithms.',
         technologies: ['ROS', 'Python', 'TensorFlow', 'Speech Recognition']
       },
@@ -39,22 +39,22 @@ document.addEventListener('DOMContentLoaded', function() {
         index: 3,
         title: 'HaulLog - Logistics Management System',
         category: 'Web Development',
-        client: 'Enterprise Project',
-        date: 'October 2023',
-        url: 'https://github.com/raymardi27/haullog',
+        // client: 'Enterprise Project',
+        date: 'May 2024',
+        url: 'https://github.com/get2aadil/trucking-management-1-1',
         description: 'A comprehensive logistics management system for tracking shipments, managing inventory, and optimizing delivery routes for small and medium enterprises.',
         technologies: ['Node.js', 'Express', 'MongoDB', 'React']
       },
-      'autonomous-nav': {
-        index: 4,
-        title: 'Autonomous Navigation of a Humanoid Robot',
-        category: 'AI & ML',
-        client: 'Research Project',
-        date: 'September 2023',
-        url: 'https://github.com/raymardi27/autonomous-nav',
-        description: 'Implementation of advanced path planning algorithms for humanoid robot navigation in complex environments. Features real-time obstacle avoidance and dynamic path adjustment.',
-        technologies: ['ROS', 'C++', 'Python', 'SLAM']
-      }
+    //   'autonomous-nav': {
+    //     index: 4,
+    //     title: 'Autonomous Navigation of a Humanoid Robot',
+    //     category: 'AI & ML',
+    //     // client: 'Research Project',
+    //     date: 'May 2022',
+    //     url: 'https://github.com/raymardi27/autonomous-nav',
+    //     description: 'Implementation of advanced path planning algorithms for humanoid robot navigation in complex environments. Features real-time obstacle avoidance and dynamic path adjustment.',
+    //     technologies: ['ROS', 'C++', 'Python', 'SLAM']
+    //   }
     };
   
     // Function to update project details based on index
@@ -64,7 +64,6 @@ document.addEventListener('DOMContentLoaded', function() {
         document.querySelector('.project-info h3').textContent = project.title;
         document.querySelector('.project-info ul').innerHTML = `
           <li><strong>Category</strong>: ${project.category}</li>
-          <li><strong>Client</strong>: ${project.client}</li>
           <li><strong>Project date</strong>: ${project.date}</li>
           <li><strong>Project URL</strong>: <a href="${project.url}" target="_blank">${project.url}</a></li>
           <li><strong>Technologies</strong>: ${project.technologies.join(', ')}</li>
@@ -73,6 +72,8 @@ document.addEventListener('DOMContentLoaded', function() {
         document.querySelector('.project-description p').textContent = project.description;
       }
     }
+
+    // <li><strong>Client</strong>: ${project.client}</li>
   
     // Initialize Swiper with callback
     const swiperElement = document.querySelector('.project-details-slider');
