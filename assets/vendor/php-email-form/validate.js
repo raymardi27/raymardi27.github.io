@@ -72,7 +72,11 @@
       }
     })
     .catch((error) => {
-      displayError(thisForm, error);
+      if(error.ok){
+        console.log('Form submitted successfully');
+      } else {
+        displayError(thisForm, error);
+      }
     });
   }
 

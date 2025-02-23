@@ -34,13 +34,9 @@ document.addEventListener('DOMContentLoaded', function() {
         throw new Error('Network response was not ok.');
       })
       .then(data => {
-        if (data.ok) {
-          loadingMessage.style.display = 'none';
-          sentMessage.style.display = 'block';
-          form.reset();
-        } else {
-          throw new Error('Form submission failed.');
-        }
+        loadingMessage.style.display = 'none';
+        sentMessage.style.display = 'block';
+        form.reset();
       })
       .catch(error => {
         loadingMessage.style.display = 'none';
