@@ -1,51 +1,62 @@
 document.addEventListener('DOMContentLoaded', function() {
-  const form = document.querySelector('.php-email-form');
-  
-  if (form) {
-    form.addEventListener('submit', function(e) {
-      e.preventDefault();
-      
-      const submitButton = form.querySelector('button[type="submit"]');
-      const loadingMessage = form.querySelector('.loading');
-      const errorMessage = form.querySelector('.error-message');
-      const sentMessage = form.querySelector('.sent-message');
-      
-      // Reset messages
+  const forms = document.querySelectorAll('.email-form');
+
+  forms.forEach(function(form) {
+    form.addEventListener('submit', async function(event) {
+      event.preventDefault();
+
+      const thisForm = this;
+      const action = thisForm.getAttribute('action');
+      const submitButton = thisForm.querySelector('button[type="submit"]');
+      const loadingMessage = thisForm.querySelector('.loading');
+      const errorMessage = thisForm.querySelector('.error-message');
+      const sentMessage = thisForm.querySelector('.sent-message');
+
+      // Validate form action
+      if (!action) {
+        displayError(thisForm, 'The form action property is not set!');
+        return;
+      }
+
+      // Reset form states
       loadingMessage.style.display = 'block';
       errorMessage.style.display = 'none';
       sentMessage.style.display = 'none';
       submitButton.disabled = true;
 
-      // Get form data
-      const formData = new FormData(form);
+      try {
+        const formData = new FormData(thisForm);
+        const response = await fetch(action, {
+          method: 'POST',
+          body: formData,
+          headers: {
+            'Accept': 'application/json'
+          }
+        });
 
-      // Submit to Formspree
-      fetch(form.action, {
-        method: 'POST',
-        body: formData,
-        headers: {
-          'Accept': 'application/json'
-        }
-      })
-      .then(response => {
-        if (response.ok) {
-          return response.json();
-        }
-        throw new Error('Network response was not ok.');
-      })
-      .then(data => {
+        const data = await response.json();
+        
         loadingMessage.style.display = 'none';
-        sentMessage.style.display = 'block';
-        form.reset();
-      })
-      .catch(error => {
+        
+        if (data.ok) {
+          sentMessage.style.display = 'block';
+          thisForm.reset();
+        } else {
+          throw new Error(data.error || 'Form submission failed!');
+        }
+      } catch (error) {
         loadingMessage.style.display = 'none';
-        errorMessage.textContent = 'Form submission failed. Please try again later.';
+        errorMessage.textContent = error.message;
         errorMessage.style.display = 'block';
-      })
-      .finally(() => {
+      } finally {
         submitButton.disabled = false;
-      });
+      }
     });
+  });
+
+  function displayError(thisForm, error) {
+    thisForm.querySelector('.loading').style.display = 'none';
+    thisForm.querySelector('.error-message').textContent = error instanceof Error ? error.message : error;
+    thisForm.querySelector('.error-message').style.display = 'block';
   }
 }); 
